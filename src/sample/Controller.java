@@ -10,6 +10,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.ImageViewBuilder;
@@ -23,6 +24,9 @@ public class Controller {
 
     public TextArea Tadescripcion;
     public ImageView Ivdescripcion;
+    public TextArea Tftitulo;
+    public TextArea Tfrareza;
+    public TextArea Tfcolor;
 
     @FXML
     ListView<Ocarta> Lvcartas ;
@@ -43,7 +47,11 @@ public class Controller {
                     protected void updateItem(Ocarta t, boolean bln) {
                         super.updateItem(t, bln);
                         if (t != null) {
-                            setText(t.getTitulo());
+                            String titulo="titulo: "+t.getTitulo();
+                            String rareza="rareza: "+t.getRarity();
+                            String color="color: "+t.getColors();
+                            String texto=titulo+"\n"+rareza+"\n"+color;
+                            setText(texto);
                         }
                     }
                 };
@@ -59,10 +67,13 @@ public class Controller {
                     @Override
                     public void changed(ObservableValue<? extends Ocarta> observable, Ocarta oldValue, Ocarta newValue) {
 
-                        //System.out.println(newValue.getTitulo());
+
                         Tadescripcion.setText(newValue.getDescripcion());
                         Image image1 = new Image(newValue.getImageUrl());
                         Ivdescripcion.setImage(image1);
+                        Tftitulo.setText("titulo: "+newValue.getTitulo());
+                        Tfrareza.setText("rareza: "+newValue.getRarity());
+                        Tfcolor.setText("color: "+newValue.getColors());
 
                     }
         });

@@ -50,7 +50,12 @@ public class CartasApi {
                 String imageUrl = object.getString("imageUrl");
                 JSONArray jsontypes = object.getJSONArray("types");
                 String types = jsontypes.get(0).toString();
-                Ocarta carta = new Ocarta(titulo, types, imageUrl, rarity, colors);
+                String descripcion = "";
+                object.has("text");
+                if (object.has("text") != false) {
+                    descripcion = object.getString("text");
+                } else descripcion = "no hay descripcion";
+                Ocarta carta = new Ocarta(titulo, types, imageUrl, rarity, colors,descripcion);
                 lista.add(carta);
             }
 

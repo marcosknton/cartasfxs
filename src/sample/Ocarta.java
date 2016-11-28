@@ -6,15 +6,25 @@ package sample;
 
 public class Ocarta {
 
-    private String titulo,rarity,imageUrl,types,colors;
+    private String titulo,rarity,imageUrl,types,colors,descripcion;
 
 
-    public Ocarta(String titulo, String types, String imageUrl, String rarity, String colors) {
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Ocarta(String titulo, String types, String imageUrl, String rarity, String colors, String descripcion) {
         this.titulo = titulo;
         this.types = types;
         this.imageUrl = imageUrl;
         this.rarity = rarity;
         this.colors=colors;
+        this.descripcion=descripcion;
+
     }
 
 
