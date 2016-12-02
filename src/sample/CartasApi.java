@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.jndi.toolkit.url.Uri;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,9 +24,18 @@ public class CartasApi {
     /**
      * @return devuelve un array con todos los objetos Ocarta
      */
-    public ArrayList<Ocarta> getOcartas() {
+    public ArrayList<Ocarta> getOcartas(String vrareza,String vcolor) {
 
         ArrayList<Ocarta> lista = new ArrayList<>();
+        /*
+        Uri builtUri = Uri.parse(url)
+                .buildUpon()
+                .appendQueryParameter("rarity",vrareza)
+                .appendQueryParameter("colors",vcolor)
+                .build();
+                String urls = builtUri.toString();
+        */
+       
         try {
             String JsonResponse = HttpUtils.get(url);
             //creamos un objeto json y como contenido le introducimos el string resultado de la pagina

@@ -6,11 +6,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.ImageViewBuilder;
@@ -24,17 +21,18 @@ public class Controller {
 
     public TextArea Tadescripcion;
     public ImageView Ivdescripcion;
-    public TextArea Tftitulo;
-    public TextArea Tfrareza;
-    public TextArea Tfcolor;
+    public Label Tftitulo;
+    public Label Tfrareza;
+    public Label Tfcolor;
 
     @FXML
     ListView<Ocarta> Lvcartas ;
 
     public void initialize() {
-
+        String vrareza="Common";
+        String vcolor="Blue";
         CartasApi cartasapi=new CartasApi();
-        ArrayList<Ocarta> listaocartas=cartasapi.getOcartas();
+        ArrayList<Ocarta> listaocartas=cartasapi.getOcartas(vrareza,vcolor);
 
         Lvcartas.setCellFactory(new Callback<ListView<Ocarta>, ListCell<Ocarta>>() {
 
@@ -71,9 +69,9 @@ public class Controller {
                         Tadescripcion.setText(newValue.getDescripcion());
                         Image image1 = new Image(newValue.getImageUrl());
                         Ivdescripcion.setImage(image1);
-                        Tftitulo.setText("titulo: "+newValue.getTitulo());
-                        Tfrareza.setText("rareza: "+newValue.getRarity());
-                        Tfcolor.setText("color: "+newValue.getColors());
+                        Tftitulo.setText(newValue.getTitulo());
+                        Tfrareza.setText(newValue.getRarity());
+                        Tfcolor.setText(newValue.getColors());
 
                     }
         });
