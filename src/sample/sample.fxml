@@ -4,37 +4,50 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <MenuBar prefHeight="29.0" prefWidth="637.0" VBox.vgrow="ALWAYS">
         <menus>
           <Menu mnemonicParsing="false" text="Filtra por rareza">
                <items>
-                  <RadioMenuItem fx:id="Rbempty" mnemonicParsing="false" text="Empty" />
-                  <RadioMenuItem fx:id="Rbcommon" mnemonicParsing="false" text="Common" />
-                  <RadioMenuItem fx:id="Rbuncommon" mnemonicParsing="false" text="Uncommon" />
-                  <RadioMenuItem fx:id="Rbrare" mnemonicParsing="false" text="rare" />
-                  <RadioMenuItem fx:id="Rbmythicrare" mnemonicParsing="false" text="Mythic Rare" />
-                  <RadioMenuItem fx:id="Rbspecial" mnemonicParsing="false" text="Special" />
-                  <RadioMenuItem fx:id="Rbbasicland" mnemonicParsing="false" text="Basic Land" />
+                  <RadioMenuItem fx:id="Rbcommon" mnemonicParsing="false" onAction="#Common" text="Common">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="selectrareza" />
+                     </toggleGroup></RadioMenuItem>
+                  <RadioMenuItem fx:id="Rbuncommon" mnemonicParsing="false" onAction="#Uncommon" text="Uncommon" toggleGroup="$selectrareza" />
+                  <RadioMenuItem fx:id="Rbrare" mnemonicParsing="false" onAction="#Rare" text="rare" toggleGroup="$selectrareza" />
+                  <RadioMenuItem fx:id="Rbmythicrare" mnemonicParsing="false" onAction="#Mythic_Rare" text="Mythic Rare" toggleGroup="$selectrareza" />
+                  <RadioMenuItem fx:id="Rbspecial" mnemonicParsing="false" onAction="#Special" text="Special" toggleGroup="$selectrareza" />
+                  <RadioMenuItem fx:id="Rbbasicland" mnemonicParsing="false" onAction="#Basic_Land" text="Basic Land" toggleGroup="$selectrareza" />
                </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Filtra por color">
                <items>
-                  <RadioMenuItem fx:id="Rbverde" mnemonicParsing="false" text="Verde" />
-                  <RadioMenuItem fx:id="Rbblanco" mnemonicParsing="false" text="Blanco" />
-                  <RadioMenuItem fx:id="Rbazul" mnemonicParsing="false" text="Azul" />
-                  <RadioMenuItem fx:id="Rbblack" mnemonicParsing="false" text="black" />
-                  <RadioMenuItem mnemonicParsing="false" text="Unspecified Action" />
-                  <RadioMenuItem fx:id="Rbrojo" mnemonicParsing="false" text="rojo" />
+                  <RadioMenuItem fx:id="Rbverde" mnemonicParsing="false" onAction="#verde" text="Verde">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="selectcolor" />
+                     </toggleGroup></RadioMenuItem>
+                  <RadioMenuItem fx:id="Rbblanco" mnemonicParsing="false" onAction="#blanco" text="Blanco" toggleGroup="$selectcolor" />
+                  <RadioMenuItem fx:id="Rbazul" mnemonicParsing="false" onAction="#azul" text="Azul" toggleGroup="$selectcolor" />
+                  <RadioMenuItem fx:id="Rbblack" mnemonicParsing="false" onAction="#negro" text="black" toggleGroup="$selectcolor" />
+                  <RadioMenuItem fx:id="Rbrojo" mnemonicParsing="false" onAction="#rojo" text="rojo" toggleGroup="$selectcolor" />
                </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Ayuda">
+              <items>
+                  <MenuItem id="root" mnemonicParsing="false" onAction="#informacio" text="sobre el selector" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
       <HBox prefHeight="378.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
@@ -42,22 +55,38 @@
             <ListView fx:id="Lvcartas" prefHeight="371.0" prefWidth="300.0" HBox.hgrow="ALWAYS" />
             <VBox prefHeight="371.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
                <children>
-                  <TextArea fx:id="Tadescripcion" prefHeight="97.0" prefWidth="300.0" wrapText="true" VBox.vgrow="ALWAYS" />
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="21.0" prefWidth="303.0" text="TEXTO CARTA         " textFill="#c60d0d">
+                     <effect>
+                        <Reflection />
+                     </effect>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Label>
+                  <TextArea fx:id="Tadescripcion" prefHeight="57.0" prefWidth="300.0" wrapText="true" VBox.vgrow="ALWAYS" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <VBox prefHeight="185.0" prefWidth="179.0">
                            <children>
-                              <ImageView fx:id="Ivdescripcion" fitHeight="227.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="Ivdescripcion" fitHeight="273.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </VBox>
-                        <VBox prefHeight="183.0" prefWidth="100.0">
+                        <VBox prefHeight="198.0" prefWidth="257.0">
                            <children>
-                              <Label text="TITULO" />
-                              <Label fx:id="Tftitulo" prefHeight="78.0" prefWidth="100.0" text="Tftitulo" />
-                              <Label text="RAREZA" />
-                              <Label fx:id="Tfrareza" prefHeight="70.0" prefWidth="100.0" text="Tfrareza" />
-                              <Label text="COLOR" />
-                              <Label fx:id="Tfcolor" prefHeight="67.0" prefWidth="100.0" text="Tfcolor" />
+                              <Label prefHeight="21.0" prefWidth="196.0" text="TITULO" textFill="#ee1212">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font></Label>
+                              <Label fx:id="Tftitulo" prefHeight="99.0" prefWidth="175.0" text="Tftitulo" wrapText="true" VBox.vgrow="ALWAYS" />
+                              <Label prefHeight="20.0" prefWidth="180.0" text="RAREZA" textFill="#e10606">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="Tfrareza" prefHeight="53.0" prefWidth="177.0" text="Tfrareza" wrapText="true" VBox.vgrow="ALWAYS" />
+                              <Label prefHeight="20.0" prefWidth="181.0" text="COLOR" textFill="#e80808">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="Tfcolor" prefHeight="73.0" prefWidth="196.0" text="Tfcolor" wrapText="true" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </children>

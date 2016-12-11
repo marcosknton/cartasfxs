@@ -6,6 +6,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 
@@ -27,15 +29,10 @@ public class CartasApi {
     public ArrayList<Ocarta> getOcartas(String vrareza,String vcolor) {
 
         ArrayList<Ocarta> lista = new ArrayList<>();
-        /*
-        Uri builtUri = Uri.parse(url)
-                .buildUpon()
-                .appendQueryParameter("rarity",vrareza)
-                .appendQueryParameter("colors",vcolor)
-                .build();
-                String urls = builtUri.toString();
-        */
-       
+
+        url="https://api.magicthegathering.io/v1/cards?colors="+vcolor+"&rarity="+getUrl(vrareza);
+
+
         try {
             String JsonResponse = HttpUtils.get(url);
             //creamos un objeto json y como contenido le introducimos el string resultado de la pagina
@@ -70,12 +67,22 @@ public class CartasApi {
             }
 
         } catch (org.json.JSONException e) {
+            if(e.equals(null))
             e.printStackTrace();
         } catch (IOException e) {
+            if (e.equals(null)) System.out.println("no existe el objeto");
             e.printStackTrace();
         }
         return lista;
 
     }
-
+    private static String getUrl(String param) {
+        String URL = "";
+        try {
+            URL =  URLEncoder.encode(param, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return URL.replace("+","%20");
+    }
 }
