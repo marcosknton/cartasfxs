@@ -17,6 +17,7 @@ public class Main extends Application {
         root.getStylesheets().add(getClass().getResource("css/greentheme.css").toExternalForm());
         primaryStage.setTitle("MaGiC CarDs ");
         primaryStage.setScene(new Scene(root, 600, 400));
+
         primaryStage.show();
     }
 

@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.ImageViewBuilder;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 import java.util.ArrayList;
@@ -149,14 +150,15 @@ public class Controller {
         });
 
     }
+
+
     public void informacio(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("sobre l'editor");
         alert.setHeaderText(null);
-        alert.setContentText("En el margen izquierdo dispones de 2 filtros un por rareza y otro por color, una vez seleccionados automaticamente te mostrará " +
-                "el grupo de cartas que cumplen esas 2 condiciones, selecciona una carta de la lista para obtener más detalles. " +
-                " Si el espacio del texto de la carta es pequeño puede agrandarlo estirando la ventana, por una de sus esquinas :)");
-
+        Text text = new Text("En el margen izquierdo dispones de 2 filtros un por rareza y otro por color, una vez seleccionados automaticamente te mostrará el grupo de cartas que cumplen esas 2 condiciones, selecciona una carta de la lista para obtener más detalles.Si el espacio del texto de la carta es pequeño puede agrandarlo estirando la ventana, por una de sus esquinas :)");
+        text.setWrappingWidth(500);
+        alert.getDialogPane().setContent(text);
         alert.showAndWait();
     }
 

@@ -65,17 +65,7 @@
    -fx-font-size:15.0px;
 }
 
-/**Costumization of DialogPane Header**/
-.dialog-pane:header .header-panel {
-  -fx-background-color: black;
-}
 
-.dialog-pane:header .header-panel .label{
-  -fx-background-color: yellow;
-  -fx-background-radius:10px;
-  -fx-text-fill:black;
-  -fx-font-size:15.0px;
-}
 
 
 /**Costumization of Buttons**/
